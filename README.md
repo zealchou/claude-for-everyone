@@ -235,13 +235,15 @@ Full FAQ 👉 [docs/05-常見問題.md](docs/05-常見問題.md). Two most-asked
 **Q: Could it break my computer?** No. It backs everything up first, reverts with one command, and the safety lock only protects — it never destroys.
 
 ### 📚 更多說明 / More docs
-全程白話、零基礎也看得懂（目前為繁體中文）。Plain-language guides for absolute beginners (Traditional Chinese).
+全程白話、零基礎也看得懂。中英文版都有。Plain-language guides for absolute beginners, in both Chinese and English.
 
-- [01・開始使用](docs/01-開始使用.md)
-- [02・六大功能怎麼運作](docs/02-六大功能.md)
-- [03・白話狀態列](docs/03-白話狀態列.md)
-- [04・資料夾安全鎖](docs/04-資料夾安全鎖.md)
-- [05・常見問題](docs/05-常見問題.md)
+| 繁體中文 | English |
+| --- | --- |
+| [01・開始使用](docs/01-開始使用.md) | [01 · Getting Started](docs/en/01-getting-started.md) |
+| [02・六大功能怎麼運作](docs/02-六大功能.md) | [02 · How the Six Features Work](docs/en/02-features.md) |
+| [03・白話狀態列](docs/03-白話狀態列.md) | [03 · The Plain Status Bar](docs/en/03-status-bar.md) |
+| [04・資料夾安全鎖](docs/04-資料夾安全鎖.md) | [04 · The Folder Safety Lock](docs/en/04-folder-lock.md) |
+| [05・常見問題](docs/05-常見問題.md) | [05 · FAQ](docs/en/05-faq.md) |
 
 <a id="story"></a>
 
