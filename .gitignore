@@ -1,0 +1,7 @@
+# 不要把私人 / 機密資料推上 GitHub
+.env
+*.local
+secrets*
+*token*
+*TOKEN*
+.DS_Store

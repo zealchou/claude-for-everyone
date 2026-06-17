@@ -1,0 +1,69 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Edit",
+      "Write",
+      "Glob",
+      "Grep",
+      "WebFetch",
+      "WebSearch"
+    ]
+  },
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '【回報風格提醒】我是新手，不懂程式。(1) 凡是「成串、多步驟」的技術操作，盡量交給背景小幫手（subagent / 背景任務）去執行，讓那些技術細節框框在背景發生，前台主畫面只留一行白話進度（例如「正在背景幫你整理檔案…」）。(2) 零星的小動作，動手「之前」先用一句白話說你正要做什麼，讓我能對照畫面上的框框。(3) 一律用白話＋生活化比喻，不要貼程式碼、指令或技術細節；只在重要節點用一兩句白話告訴我結果。'"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit|NotebookEdit|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/folder-guard.sh",
+            "statusMessage": "資料夾安全檢查"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "osascript -e 'set volume output volume 40' 2>/dev/null; say '工作告一段落，回來看看吧' 2>/dev/null",
+            "statusMessage": "語音提醒",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "osascript -e 'set volume output volume 40' 2>/dev/null; say '我需要你回來處理一下' 2>/dev/null",
+            "statusMessage": "語音提醒",
+            "async": true
+          }
+        ]
+      }
+    ]
+  },
+  "language": "繁體中文",
+  "theme": "dark",
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-plain.sh",
+    "padding": 0,
+    "refreshInterval": 10
+  }
+}
