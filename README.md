@@ -18,12 +18,18 @@
 </p>
 
 <p align="center">
-  <b>不用會寫程式 · AI 講人話 · 怕弄壞一鍵還原 · 會自己長大</b><br>
-  <i>No coding needed · plain-language AI · one-click revert · grows with you</i>
+  <b>⭐ 會自己長大 · AI 講人話 · 怕弄壞一鍵還原 · 不用會寫程式</b><br>
+  <i>⭐ grows with you · plain-language AI · one-click revert · no coding needed</i>
 </p>
 
 > 📖 本文件採「**一段中文、一段英文**」對照。
 > This README is **bilingual** — each Chinese paragraph is followed by its English version.
+
+> 🚧 **工程師請止步（認真的）。** 這裡沒有 MCP、沒有 sub-agent 編排、沒有 prompt 工程技巧，也不會讓你的 CI 變快。如果你看得懂這句話，這個包大概不是為你做的——它是為你「那位完全不會寫程式、但很想用 AI 的家人 / 同事 / 老闆」做的。把連結傳給他們，你就可以回去寫你的 code 了。😎
+> 🚧 **Engineers, look away (seriously).** No MCP, no sub-agent orchestration, no prompt-engineering tricks, and it won't speed up your CI. If you understood that sentence, this kit probably isn't for you — it's for that family member / colleague / boss of yours who can't code but really wants to use AI. Send them the link and get back to your own code. 😎
+
+> ⭐ **這個包最特別的一招：它會「自己長大」。** 別的設定包下載完就定型了；這個包會**一邊陪你工作、一邊偷偷觀察你的習慣**，然後主動問你：「這件事你好像每次都要做，要不要我幫你變成自動的？」你越用，它越懂你、幫你省越多事。這是它跟市面上所有設定包最不一樣的地方 👉 [🌱 看看它怎麼長大](#features)。
+> ⭐ **The kit's signature move: it _grows with you_.** Other kits are frozen the moment you download them; this one **works alongside you and quietly learns your habits**, then asks: "You seem to do this every time — want me to automate it?" The more you use it, the better it fits you. 👉 [See how it grows](#features).
 
 ---
 
@@ -47,21 +53,21 @@
 
 ## 🤔 這是什麼 / What is this
 
-Claude Code 本來是設計給工程師的，預設畫面充滿術語、按鍵、英文縮寫，新手打開常常一臉茫然、不敢亂動。這個包把它「重新裝潢」成**新手模式**——就像把一台有上百個按鈕的專業相機，調成「傻瓜模式」：你只要按下快門，它就幫你把其他都處理好。
-Claude Code was built for engineers, so its default screen is full of jargon, shortcuts and abbreviations that leave beginners frozen. This kit "redecorates" it into a **beginner mode** — like switching a professional camera with a hundred buttons into "point-and-shoot": you press the shutter, it handles the rest.
+老實說，Claude Code 是工程師做給工程師用的——預設畫面塞滿術語、英文縮寫、看不懂的框框，新手一打開常常是「這⋯⋯我可以碰嗎？會不會按一下就爆炸？」於是看了三分鐘就關掉了。這個包把它**整個重新裝潢**成新手模式：就像把一台有上百顆按鈕的專業相機，切到「傻瓜模式」——你只要按快門，剩下的它全包。
+Honestly, Claude Code is made by engineers, for engineers — the default screen is packed with jargon and cryptic boxes that make a beginner go "…am I allowed to touch this? Will it explode if I click?" This kit **completely redecorates** it into beginner mode: like flipping a pro camera with a hundred buttons into "point-and-shoot" — you press the shutter, it handles the rest.
 
-**適合誰？** 你會用電腦、會打字、想用 AI 幫你處理日常工作（整理資料、寫東西、查資料、跑流程），但**完全沒有寫過程式**，看到一堆程式碼就頭痛——這個包就是為你做的。
-**Who is it for?** You can use a computer and type, you want AI to help with everyday work (organizing files, writing, research, running tasks), but you've **never written code** and a wall of code makes your head hurt — this kit is made for you.
+**適合誰？** 你會用電腦、會打字、想用 AI 幫你處理日常工作（整理資料、寫東西、查資料、跑流程），但**這輩子沒寫過一行程式**，看到程式碼就想闔上電腦——對，就是你，這個包就是為你做的。
+**Who is it for?** You can use a computer and type, you want AI for everyday work (organizing files, writing, research, running tasks), but you've **never written a line of code** and a wall of code makes you want to shut the laptop — yes, you; this kit is for you.
 
 <a id="why"></a>
 
 ## 💡 這跟別的設定包差在哪 / Why this is different
 
-GitHub 上已經有很多 Claude Code 的設定包，但**它們幾乎都假設「你會寫程式」**，賣的是效率、外掛、進階技巧，文件也全是術語。
-There are already many Claude Code setup kits on GitHub, but **almost all of them assume you can code** — they sell efficiency, plugins and advanced tricks, and their docs are full of jargon.
+GitHub 上 Claude Code 的設定包多如牛毛，但**它們幾乎都偷偷假設「你會寫程式」**：賣的是效率、外掛、進階技巧，文件打開全是術語，新手看了只會更慌。
+GitHub is full of Claude Code setup kits, but **almost all of them quietly assume you can code** — selling speed, plugins and advanced tricks, with docs that only make a beginner more anxious.
 
-**這個包假設你完全不會。** 它的重點不是「更快」，而是「**更安心、更看得懂、不怕弄壞**」——而且它會**一邊用一邊觀察你的習慣，主動幫你把重複的事變成自動的**。這一點，是市面上的包目前沒有的。
-**This kit assumes you can't code at all.** Its focus isn't "faster" but "**safer, more understandable, harder to break**" — and it **watches how you work and proactively turns your repeated actions into automation**. That last part is something other kits don't offer yet.
+**這個包反過來，假設你完全不會、而且會怕。** 所以它的重點不是「更快」，而是「**更安心、更看得懂、不怕弄壞**」。但真正讓它與眾不同的，是那個 ⭐ **「會自己長大」**——它不是一套死的設定，而是會**持續觀察你、主動幫你把重複勞動變成自動化**（你點頭才做）。換句話說：別的包是「工具」，這個包比較像一個**會越來越懂你的助理**。這一點，目前市面上面向新手的包幾乎找不到。
+**This kit flips it: it assumes you can't code — and that you're nervous about it.** So its focus isn't "faster" but "**safer, clearer, harder to break**." But what truly sets it apart is ⭐ **"Grows with you"** — it's not a frozen config, it **keeps watching how you work and proactively turns repetitive labor into automation** (only with your yes). In other words: other kits are *tools*; this one is more like **an assistant that understands you better over time** — something beginner-focused kits simply don't offer yet.
 
 <a id="features"></a>
 

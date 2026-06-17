@@ -15,7 +15,7 @@ What each part means:
 
 | Display | Plain meaning |
 | --- | --- |
-| 🧠 Brain | Which AI is active. Opus = smartest, Sonnet = fast & good, Haiku = fastest |
+| 🧠 Brain | Which AI is active. Opus = smartest, Sonnet = fast & good, Haiku = fastest, Fable = newest |
 | 📁 Working on | The name of the folder you're currently in |
 | 💭 Conversation space | How much of this conversation's "memory" is used (grows as you go) |
 | 🔄 Until auto-tidy | How much room is left before "auto-compaction" kicks in. **This number counts down** like a fuel gauge. Near 0%, Claude automatically condenses earlier conversation to free up space |

@@ -21,16 +21,16 @@ j() { printf '%s' "$input" | jq -r "$1" 2>/dev/null; }
 MODEL=$(j '.model.display_name // empty');   [ -z "$MODEL" ] && MODEL="?"
 DIRPATH=$(j '.workspace.current_dir // empty')
 FOLDER="${DIRPATH##*/}";                     [ -z "$FOLDER" ] && FOLDER="家目錄"
+# 把百分比夾在 0~100（避免極端 JSON 顯示出 150%、250% 這種怪數字）
+clamp() { v="$1"; case "$v" in ''|*[!0-9]*) echo ""; return;; esac; [ "$v" -gt 100 ] && v=100; [ "$v" -lt 0 ] && v=0; echo "$v"; }
+
 CTX=$(j '.context_window.used_percentage // 0' | cut -d. -f1)
-case "$CTX" in ''|*[!0-9]*) CTX=0 ;; esac
+CTX=$(clamp "$CTX"); [ -z "$CTX" ] && CTX=0
 # 距離自動整理還剩多少（會越用越少）。沒給就用 100 - 已用 推算
 REMAIN=$(j '.context_window.remaining_percentage // empty' | cut -d. -f1)
-case "${REMAIN:-}" in ''|*[!0-9]*) REMAIN=$((100 - CTX)) ;; esac
-[ "$REMAIN" -lt 0 ] && REMAIN=0
-RL=$(j '.rate_limits.five_hour.used_percentage // empty' | cut -d. -f1)
-case "${RL:-}" in *[!0-9]*) RL="" ;; esac
-RL7=$(j '.rate_limits.seven_day.used_percentage // empty' | cut -d. -f1)
-case "${RL7:-}" in *[!0-9]*) RL7="" ;; esac
+REMAIN=$(clamp "$REMAIN"); [ -z "$REMAIN" ] && REMAIN=$((100 - CTX))
+RL=$(clamp "$(j '.rate_limits.five_hour.used_percentage // empty' | cut -d. -f1)")
+RL7=$(clamp "$(j '.rate_limits.seven_day.used_percentage // empty' | cut -d. -f1)")
 
 # 助理大腦 → 翻成白話標籤
 case "$MODEL" in

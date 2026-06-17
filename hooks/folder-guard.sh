@@ -27,6 +27,10 @@ WRITABLE_SUB=""       # 例： "/Volumes/MyDisk/暫存"
 # 沒設定保護資料夾 → 直接放行（安全的預設）
 [ -z "$PROTECTED_DIR" ] && exit 0
 
+# 去掉結尾斜線，避免使用者手滑多打一個 "/" 害路徑比對失準、保護失效
+PROTECTED_DIR="${PROTECTED_DIR%/}"
+WRITABLE_SUB="${WRITABLE_SUB%/}"
+
 input=$(cat)
 tool=$(printf '%s' "$input" | jq -r '.tool_name // ""' 2>/dev/null)
 # 把保護路徑轉成「安全的正則」：所有非英數字元一律跳脫，避免路徑含 + ( ) ? 等特殊字元時整條正則壞掉導致保護失效
@@ -83,8 +87,10 @@ case "$tool" in
     if printf '%s' "$stripped" | grep -qiE '(\brm\b|\brmdir\b|\bunlink\b|\bshred\b|\bmv\b|\bcp\b|\bdd\b|\btruncate\b|\bditto\b|\brsync\b|\bchmod\b|\bchown\b|\bchflags\b|\bmkdir\b|\btouch\b|\bln\b|\btee\b|\btrash\b|sed[[:space:]]+-i|perl[[:space:]].*-i|-delete\b|-exec(dir)?\b)'; then
       deny "資料夾安全鎖：偵測到對保護區的寫入 / 刪除 / 搬移指令，已攔截。要讀取沒問題，但這個資料夾禁止修改。"
     fi
-    # 寫入式重導向（把資料寫進保護區）
-    if printf '%s' "$stripped" | grep -qE "(^|[^0-9&>])>[>|]?[[:space:]]*[\"']?$PROT_RE"; then
+    # 寫入式重導向（把資料寫進保護區）：一般 > >>、以及 fd 重導向 1> 2> &> 寫入保護區
+    # （注意：$PROT_RE 開頭一定是 / 或英數，不會誤判 2>&1 這種非檔案重導向）
+    if printf '%s' "$stripped" | grep -qE "(^|[^0-9&>])>[>|]?[[:space:]]*[\"']?$PROT_RE" \
+       || printf '%s' "$stripped" | grep -qE "([0-9]+>|&>)[>]?[[:space:]]*[\"']?$PROT_RE"; then
       deny "資料夾安全鎖：偵測到把資料寫入保護區，已攔截。這個資料夾只能讀、不能寫。"
     fi
     ;;
