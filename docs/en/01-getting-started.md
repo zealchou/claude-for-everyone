@@ -4,14 +4,18 @@
 
 ## What you need first
 
-1. **A computer** — a Mac is ideal (the voice reminders use a built-in Mac feature). Windows / Linux work too; just ask Claude to adapt the voice line.
+1. **A computer** — a **Mac** is recommended (the voice reminders use a built-in Mac feature). Windows needs WSL or Git Bash first, which is fiddly, so **Mac is the smoother choice for beginners**; ask Claude to swap the voice line for a Windows one too.
 2. **Claude Code installed** — if you haven't, follow the instructions on the Claude Code website.
-3. **Two small tools, `jq` and `python3`** — most Macs already have them. If something's missing, just tell Claude "install jq for me." (Without jq, the one-click installer pauses automatically and won't touch your settings.)
+3. **Two small tools, `jq` and `python3`** — most Macs already have them. If something's missing, just tell Claude "install jq for me." (The status bar needs jq to show; and if you already have a settings file but no jq, the installer pauses automatically and won't touch your settings.)
 4. That's it — no coding required.
+
+## Step 1: Download this kit
+
+On this GitHub page, click the green **"Code"** button (top right) → **"Download ZIP"**, then **unzip** it to get this folder. (If you know `git`, you can clone instead.)
 
 ## The easy way (recommended)
 
-Download this folder, open Claude Code, and just say:
+**Important: open Claude Code _inside the folder you just unzipped_** (so it can see the files), then say:
 
 > **"Please follow the instructions in this folder and set up my Claude Code in beginner-friendly mode."**
 

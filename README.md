@@ -167,14 +167,18 @@ Every part is plain language — no jargon needed — and the usage figures are 
 ## 🚀 快速開始 / Quick start
 
 ### 你需要先有什麼 / Prerequisites
-- 一台 **Mac**（語音提醒用的是 Mac 內建功能；Windows/Linux 也能用，語音那條請 Claude 幫你改）。
-  A **Mac** is ideal (voice uses a built-in Mac feature; Windows/Linux work too — ask Claude to adapt the voice line).
+- 一台 **Mac**（語音提醒用的是 Mac 內建功能）。Windows 要先裝 WSL 或 Git Bash 才能用，**建議優先在 Mac 上使用**；語音那條也請 Claude 幫你換成 Windows 版。
+  A **Mac** is recommended (voice uses a built-in Mac feature). Windows needs WSL or Git Bash first, so **Mac is the smoother choice**; ask Claude to swap the voice line for a Windows one.
 - 已安裝 **Claude Code**，以及兩個小工具 **jq**、**python3**（多數 Mac 已內建；缺的話直接請 Claude 幫你裝）。
   **Claude Code** installed, plus two small tools **jq** and **python3** (usually preinstalled on Mac; if missing, just ask Claude to install them).
 
+### 第一步：先把這個包下載下來 / Step 1: Download this kit
+在這個 GitHub 頁面**右上角點綠色的「Code」按鈕 → 選「Download ZIP」**，下載後**解壓縮**，你就會得到這個資料夾。（會用 `git` 的人也可以直接 clone。）
+On this GitHub page, click the green **"Code"** button (top right) → **"Download ZIP"**, then **unzip** it to get this folder. (If you know `git`, you can clone instead.)
+
 ### 最簡單的裝法（推薦）/ The easy way (recommended)
-把這個資料夾下載到電腦，打開 Claude Code，直接對它說：
-Download this folder, open Claude Code, and just say:
+**重點：要在「剛剛解壓出來的那個資料夾裡」打開 Claude Code**（這樣它才看得到說明檔），然後直接對它說：
+**Important: open Claude Code _inside the folder you just unzipped_** (so it can see the files), then just say:
 
 > **「請照這個資料夾裡的說明，把我的 Claude Code 設定成新手友善模式。」**
 > *"Please follow the instructions in this folder and set up my Claude Code in beginner-friendly mode."*

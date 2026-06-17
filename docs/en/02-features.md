@@ -27,7 +27,7 @@ The bottom line of the screen — once full of jargon — is now plain language:
 ## 5. 🌱 Grows with you (the soul of this kit)
 **Like** an apprentice who understands you more over time and offers, "let me make this automatic for you."
 
-As the AI works with you, it watches your habits — what you **keep correcting**, the preferences you **always ask for**, the workflows you **redo by hand** — then **proactively asks** whether to turn it into automation (an auto-running rule, a command, or a flow). **It only acts if you say yes**, and stops nagging if you say no. You can also run `/習慣盤點` anytime to trigger a review.
+As the AI works with you, it watches your habits — what you **keep correcting**, the preferences you **always ask for**, the workflows you **redo by hand**, even **periodic tasks** — then **proactively asks** whether to turn it into automation (an auto-running rule, a command, a schedule, or a flow). **It only acts if you say yes**, and stops nagging if you say no. You can also run `/習慣盤點` anytime to trigger a review.
 
 > Claude Code can already "remember things" natively (memory). What makes this kit special is upgrading "remember" into "**proactively turn it into automation**," with ready-made plain-language templates so you don't start from a blank page.
 

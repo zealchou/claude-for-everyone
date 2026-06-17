@@ -27,9 +27,12 @@ WRITABLE_SUB=""       # 例： "/Volumes/MyDisk/暫存"
 # 沒設定保護資料夾 → 直接放行（安全的預設）
 [ -z "$PROTECTED_DIR" ] && exit 0
 
-# 去掉結尾斜線，避免使用者手滑多打一個 "/" 害路徑比對失準、保護失效
-PROTECTED_DIR="${PROTECTED_DIR%/}"
-WRITABLE_SUB="${WRITABLE_SUB%/}"
+# 去掉結尾斜線（含手滑多打的 // ），避免路徑比對失準、保護失效
+while [ "${PROTECTED_DIR%/}" != "$PROTECTED_DIR" ]; do PROTECTED_DIR="${PROTECTED_DIR%/}"; done
+while [ "${WRITABLE_SUB%/}"  != "$WRITABLE_SUB"  ]; do WRITABLE_SUB="${WRITABLE_SUB%/}";  done
+# 若被去成空字串（例如只填了 "/"），視為沒有有效保護設定、直接放行，
+# 避免把整顆磁碟誤當保護區而擋掉所有寫入
+[ -z "$PROTECTED_DIR" ] && exit 0
 
 input=$(cat)
 tool=$(printf '%s' "$input" | jq -r '.tool_name // ""' 2>/dev/null)
