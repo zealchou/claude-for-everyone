@@ -18,8 +18,8 @@ input=$(cat)
 # 小工具：從那包資訊裡挑出某個欄位
 j() { printf '%s' "$input" | jq -r "$1" 2>/dev/null; }
 
-MODEL=$(j '.model.display_name');           [ -z "$MODEL" ] && MODEL="?"
-DIRPATH=$(j '.workspace.current_dir')
+MODEL=$(j '.model.display_name // empty');   [ -z "$MODEL" ] && MODEL="?"
+DIRPATH=$(j '.workspace.current_dir // empty')
 FOLDER="${DIRPATH##*/}";                     [ -z "$FOLDER" ] && FOLDER="家目錄"
 CTX=$(j '.context_window.used_percentage // 0' | cut -d. -f1)
 case "$CTX" in ''|*[!0-9]*) CTX=0 ;; esac

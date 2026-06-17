@@ -55,10 +55,10 @@ case "$tool" in
   Write|Edit|MultiEdit|NotebookEdit)
     fp=$(printf '%s' "$input" | jq -r '.tool_input.file_path // .tool_input.notebook_path // ""' 2>/dev/null)
     case "$fp" in
-      *..*) case "$fp" in "$PROTECTED_DIR"*) deny "資料夾安全鎖：路徑含 .. 有越界風險，已攔截（$fp）" ;; esac ;;
+      *..*) case "$fp" in "$PROTECTED_DIR"*) deny "資料夾安全鎖：路徑含 .. 有越界風險，已攔截（ ${fp} ）" ;; esac ;;
     esac
     if is_protected_path "$fp"; then
-      deny "資料夾安全鎖：『$PROTECTED_DIR』是唯讀保護區，不允許修改 / 刪除這個檔案：$fp"
+      deny "資料夾安全鎖：「 ${PROTECTED_DIR} 」是唯讀保護區，不允許修改 / 刪除這個檔案： ${fp}"
     fi
     ;;
 
@@ -67,8 +67,10 @@ case "$tool" in
     # 指令沒提到保護區 → 與我們無關，放行
     printf '%s' "$cmd" | grep -qF "$PROTECTED_DIR" || exit 0
     # 把「允許寫入子夾」遮蔽掉；若還殘留保護區路徑＝有動到受保護的地方
+    # 只遮蔽「子夾後面接 / 或空白/引號/結尾」的情況，避免 tmpEVIL 這種前綴撞名繞過保護
     if [ -n "$WRITABLE_SUB" ]; then
-      stripped=$(printf '%s' "$cmd" | sed "s|$WRITABLE_SUB|__ALLOWED__|g")
+      WS_RE=$(printf '%s' "$WRITABLE_SUB" | sed 's/[][\.*^$\/]/\\&/g')
+      stripped=$(printf '%s' "$cmd" | sed -E "s#${WS_RE}(/|[[:space:]]|\"|'|\$)#__ALLOWED__\1#g")
     else
       stripped="$cmd"
     fi

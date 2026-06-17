@@ -1,7 +1,14 @@
 # 不要把私人 / 機密資料推上 GitHub
 .env
+.env.*
 *.local
+settings.local.json
 secrets*
+*secret*
+*credential*
 *token*
 *TOKEN*
+*.key
+*.pem
+id_rsa*
 .DS_Store
