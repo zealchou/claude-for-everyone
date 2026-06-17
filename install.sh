@@ -46,6 +46,15 @@ if [ -f "$SETTINGS" ] && ! command -v jq >/dev/null 2>&1; then
   exit 1
 fi
 
+# 既有設定檔若不是合法 JSON（格式壞了），先停下來，不動任何東西、也不會假裝成功
+if [ -f "$SETTINGS" ] && ! jq empty "$SETTINGS" >/dev/null 2>&1; then
+  echo ""
+  echo "⚠️  你原本的 settings.json 格式好像壞了（讀不出來）。為了不蓋掉它，已暫停安裝（你的設定完全沒被動到）。"
+  echo "   請找 Claude 幫你檢查並修好 ~/.claude/settings.json，再跑一次 bash install.sh。"
+  rm -rf "$BK"
+  exit 1
+fi
+
 echo "🧩 步驟 2／4：放入小程式與指令（白話狀態列、安全鎖、設定面板…）…"
 cp "$HERE/scripts/statusline-plain.sh" "$CLAUDE_DIR/statusline-plain.sh"
 cp "$HERE/scripts/notify-telegram.sh"  "$CLAUDE_DIR/scripts/notify-telegram.sh"
@@ -55,7 +64,7 @@ cp "$HERE/commands/"*.md "$CLAUDE_DIR/commands/"
 
 echo "⚙️  步驟 3／4：套用新手友善設定（保留你原本的設定，只把我們的加上去）…"
 if [ -f "$SETTINGS" ]; then
-  jq -s '
+  if jq -s '
     .[0] as $o | .[1] as $n
     | ($o * $n)
     | .permissions.allow = ((($o.permissions.allow // []) + ($n.permissions.allow // [])) | unique)
@@ -65,7 +74,15 @@ if [ -f "$SETTINGS" ]; then
             .[$k] = ((($o.hooks // {})[$k] // []) + (($n.hooks // {})[$k] // [])) )
         | with_entries(select(.value | length > 0))
       )
-  ' "$SETTINGS" "$EX" > "$SETTINGS.tmp" && mv "$SETTINGS.tmp" "$SETTINGS"
+  ' "$SETTINGS" "$EX" > "$SETTINGS.tmp" 2>/dev/null; then
+    mv "$SETTINGS.tmp" "$SETTINGS"
+  else
+    rm -f "$SETTINGS.tmp"
+    echo "⚠️  合併設定時出了點問題，為了不蓋掉你原本的設定，已暫停安裝。"
+    echo "   請找 Claude 幫你看一下 ~/.claude/settings.json，再跑一次 bash install.sh。"
+    rm -rf "$BK"
+    exit 1
+  fi
 else
   cp "$EX" "$SETTINGS"
 fi
