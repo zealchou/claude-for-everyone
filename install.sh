@@ -46,10 +46,12 @@ if [ -f "$SETTINGS" ] && ! command -v jq >/dev/null 2>&1; then
   exit 1
 fi
 
-# 既有設定檔若不是合法 JSON（格式壞了），先停下來，不動任何東西、也不會假裝成功
-if [ -f "$SETTINGS" ] && ! jq empty "$SETTINGS" >/dev/null 2>&1; then
+# 既有設定檔必須是「合法 JSON 物件」才能合併；格式壞了、或內容是陣列/數字/字串等
+# 非物件型態（無法 *合併*）都先停下來。重點：這道檢查在「放小程式」之前，
+# 確保中止時連半個檔案都不會放進去（不留任何殘渣）。
+if [ -f "$SETTINGS" ] && ! jq -e 'type=="object"' "$SETTINGS" >/dev/null 2>&1; then
   echo ""
-  echo "⚠️  你原本的 settings.json 格式好像壞了（讀不出來）。為了不蓋掉它，已暫停安裝（你的設定完全沒被動到）。"
+  echo "⚠️  你原本的 settings.json 格式不對（不是正常的設定物件，可能壞了或是空的）。為了不蓋掉它，已暫停安裝（你的設定完全沒被動到）。"
   echo "   請找 Claude 幫你檢查並修好 ~/.claude/settings.json，再跑一次 bash install.sh。"
   rm -rf "$BK"
   exit 1
