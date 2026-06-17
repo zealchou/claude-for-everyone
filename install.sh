@@ -26,7 +26,7 @@ if [ -f "$MARKER" ]; then
   exit 0
 fi
 
-mkdir -p "$CLAUDE_DIR/hooks" "$CLAUDE_DIR/commands" "$CLAUDE_DIR/backups"
+mkdir -p "$CLAUDE_DIR/hooks" "$CLAUDE_DIR/commands" "$CLAUDE_DIR/scripts" "$CLAUDE_DIR/backups"
 STAMP="$(date +%Y%m%d-%H%M%S)"
 BK="$CLAUDE_DIR/backups/newbie-kit-$STAMP"
 mkdir -p "$BK"
@@ -48,8 +48,9 @@ fi
 
 echo "🧩 步驟 2／4：放入小程式與指令（白話狀態列、安全鎖、設定面板…）…"
 cp "$HERE/scripts/statusline-plain.sh" "$CLAUDE_DIR/statusline-plain.sh"
+cp "$HERE/scripts/notify-telegram.sh"  "$CLAUDE_DIR/scripts/notify-telegram.sh"
 cp "$HERE/hooks/folder-guard.sh"       "$CLAUDE_DIR/hooks/folder-guard.sh"
-chmod +x "$CLAUDE_DIR/statusline-plain.sh" "$CLAUDE_DIR/hooks/folder-guard.sh"
+chmod +x "$CLAUDE_DIR/statusline-plain.sh" "$CLAUDE_DIR/scripts/notify-telegram.sh" "$CLAUDE_DIR/hooks/folder-guard.sh"
 cp "$HERE/commands/"*.md "$CLAUDE_DIR/commands/"
 
 echo "⚙️  步驟 3／4：套用新手友善設定（保留你原本的設定，只把我們的加上去）…"
@@ -62,6 +63,7 @@ if [ -f "$SETTINGS" ]; then
         reduce (["UserPromptSubmit","PreToolUse","PostToolUse","Stop","Notification"]|.[]) as $k
           ( ($o.hooks // {});
             .[$k] = ((($o.hooks // {})[$k] // []) + (($n.hooks // {})[$k] // [])) )
+        | with_entries(select(.value | length > 0))
       )
   ' "$SETTINGS" "$EX" > "$SETTINGS.tmp" && mv "$SETTINGS.tmp" "$SETTINGS"
 else

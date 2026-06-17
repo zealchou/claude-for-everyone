@@ -21,6 +21,13 @@ if [ ! -f "$MARKER" ]; then
 fi
 BK="$(cat "$MARKER")"
 
+# 備份夾不見了就中止，千萬不要誤把使用者現有設定當成「原本沒有」而刪掉
+if [ ! -d "$BK" ]; then
+  echo "⚠️  找不到備份夾（$BK）。為了不誤刪你的設定，已中止還原——你的設定完全沒被動到。"
+  echo "   （目前是『安裝新手包之後』的狀態。需要的話，請找 Claude 幫你手動處理。）"
+  exit 1
+fi
+
 echo "↩️  步驟 1／3：還原原本的設定檔…"
 if [ -f "$BK/settings.json" ]; then
   cp "$BK/settings.json" "$SETTINGS"
@@ -39,6 +46,7 @@ else
   echo "   你原本沒有 CLAUDE.md，已移除。"
 fi
 rm -f "$CLAUDE_DIR/statusline-plain.sh"
+rm -f "$CLAUDE_DIR/scripts/notify-telegram.sh"
 rm -f "$CLAUDE_DIR/hooks/folder-guard.sh"
 for f in 習慣盤點 出廠檢查 設定面板 說明; do
   rm -f "$CLAUDE_DIR/commands/$f.md"

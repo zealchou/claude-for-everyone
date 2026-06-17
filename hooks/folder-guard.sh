@@ -29,7 +29,8 @@ WRITABLE_SUB=""       # 例： "/Volumes/MyDisk/暫存"
 
 input=$(cat)
 tool=$(printf '%s' "$input" | jq -r '.tool_name // ""' 2>/dev/null)
-PROT_RE=$(printf '%s' "$PROTECTED_DIR" | sed 's/[.[\*^$]/\\&/g')
+# 把保護路徑轉成「安全的正則」：所有非英數字元一律跳脫，避免路徑含 + ( ) ? 等特殊字元時整條正則壞掉導致保護失效
+PROT_RE=$(printf '%s' "$PROTECTED_DIR" | sed 's/[^[:alnum:]]/\\&/g')
 
 deny() {
   jq -n --arg r "$1" '{hookSpecificOutput:{hookEventName:"PreToolUse",permissionDecision:"deny",permissionDecisionReason:$r}}'
@@ -69,8 +70,11 @@ case "$tool" in
     # 把「允許寫入子夾」遮蔽掉；若還殘留保護區路徑＝有動到受保護的地方
     # 只遮蔽「子夾後面接 / 或空白/引號/結尾」的情況，避免 tmpEVIL 這種前綴撞名繞過保護
     if [ -n "$WRITABLE_SUB" ]; then
-      WS_RE=$(printf '%s' "$WRITABLE_SUB" | sed 's/[][\.*^$\/]/\\&/g')
-      stripped=$(printf '%s' "$cmd" | sed -E "s#${WS_RE}(/|[[:space:]]|\"|'|\$)#__ALLOWED__\1#g")
+      # 同樣把所有非英數字元跳脫，避免特殊字元讓 sed 壞掉
+      WS_RE=$(printf '%s' "$WRITABLE_SUB" | sed 's/[^[:alnum:]]/\\&/g')
+      stripped=$(printf '%s' "$cmd" | sed -E "s#${WS_RE}(/|[[:space:]]|\"|'|\$)#__ALLOWED__\1#g" 2>/dev/null) || stripped="$cmd"
+      # 萬一遮蔽過程出意外變空字串，保守起見當作「有動到保護區」（fail-closed，寧可多擋）
+      [ -z "$stripped" ] && [ -n "$cmd" ] && stripped="$cmd"
     else
       stripped="$cmd"
     fi

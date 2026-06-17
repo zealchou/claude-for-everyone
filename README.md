@@ -67,37 +67,76 @@ There are already many Claude Code setup kits on GitHub, but **almost all of the
 
 ## ✨ 六大功能 / Features
 
+> 下面每個功能都說明「它解決什麼痛點」「跟一般設定包差在哪」「實際舉例」，讓你不用安裝也想像得到。
+> Each feature explains the pain it solves, how it differs from typical kits, and a concrete example.
+
 ### 1. 🗣️ 講人話 / Plain language
-每次 AI 動手前，會先用一句白話告訴你「我正要做什麼」，全程白話＋生活化比喻，不丟一堆程式碼給你。
-Before each action, the AI tells you in one plain sentence what it's about to do, and explains everything in everyday language — no walls of code.
-> 🍔 **舉例 / Example：** 你說「幫我把這 50 個檔案改名」，它不會貼一串指令，而是說：「我正在背景幫你改名，改好會告訴你 ✅」。
-> Instead of pasting commands, it says: *"I'm renaming them in the background, I'll let you know when it's done ✅."*
+
+新手用 Claude Code 最大的挫折，是**畫面一直跳出看不懂的東西**：一串指令、一塊程式碼、一堆英文縮寫，明明只是想請它幫個忙，卻好像在看工程師的工作日誌。久了就會「不敢按、不敢試」，因為根本不知道它在做什麼、會不會出事。
+
+這個功能把互動方式整個翻過來：**AI 每次動手之前，會先用一句白話告訴你「我正要做什麼」**，過程中也一律用生活化的比喻說明，複雜的步驟丟到背景去跑，前台只給你「結果」而不是「過程」。它靠的是一個每次都會自動觸發的提醒機制，不是靠 AI「臨時記得」要講人話——所以很穩定，不會今天客氣、明天又滿嘴術語。
+
+**跟別的 repo 差在哪：** 市面上的設定包大多假設「你看得懂程式」，賣的是讓工程師更快；它們不在乎畫面對新手友不友善。這個包反過來，把「讓你看得懂、敢放心用」放在第一位。
+> 🍔 **舉例：** 你說「幫我把這 50 個檔案改名」，它不會貼一長串指令，而是說：「我正在背景幫你改名，改好會跟你說 ✅」。你看那句話就好，那些技術框框當背景雜訊忽略它即可。
+
+*English:* The biggest frustration for beginners is the constant stream of incomprehensible output. This kit flips it: the AI says one plain sentence before each action, uses everyday analogies, and runs heavy steps in the background — reporting results, not raw process. Unlike typical kits that assume you can read code, this one puts "you understand it and feel safe" first.
 
 ### 2. 🔔 語音提醒 / Voice reminders
-工作做完、或需要你做決定時，電腦會**出聲叫你**回來看，不用一直盯著螢幕。
-When a task finishes or your decision is needed, your computer **speaks up** to call you back — no need to stare at the screen.
-> 🍔 **舉例：** 你去倒杯咖啡，回來前就聽到電腦說「工作告一段落，回來看看吧」。
-> You go grab a coffee and hear *"the task is done, come take a look"* before you're even back.
+
+用 AI 處理事情，常常會有「空檔」——它在背景跑一個比較久的任務，你不知道好了沒，只能一直回來盯著螢幕看，很浪費時間，也很焦慮。更糟的是，有時候它**卡在一個需要你做決定的地方**，你卻沒注意到，結果它就一直等、你也一直等。
+
+這個功能讓電腦在兩個關鍵時刻**主動出聲叫你**：一是「工作告一段落」，二是「需要你做決定」。聲音用的是 Mac 內建的語音，預設音量 40%（辦公室不會太吵），覺得吵或不想要，跟它說一聲就能調小或關掉。這樣你就能放心去做別的事，該回來的時候它會喊你。
+
+**跟別的 repo 差在哪：** 大部分設定包頂多做個桌面通知小視窗，預設你會一直坐在電腦前盯著。這個包預設你是「忙碌、會離開座位」的一般使用者，所以用更難被忽略的「聲音」提醒。
+> 🍔 **舉例：** 你交代一件事後跑去倒咖啡，還沒走回座位，就聽到電腦說「工作告一段落，回來看看吧」——不用每隔三十秒回來看一次。
+
+*English:* AI tasks often leave you waiting, refreshing the screen, or missing the moment it needs your decision. This feature makes your computer speak up at two key moments — "task done" and "your decision needed" — using the built-in Mac voice at 40% volume (adjustable or off on request). Most kits only show a desktop popup assuming you're glued to the screen; this one assumes you're a busy person who steps away.
 
 ### 3. 🔒 資料夾安全鎖 / Folder safety lock
-你指定的重要資料夾，AI **只能讀、不能改不能刪**，避免誤動。預設「不鎖任何東西」，要你指定才生效。
-Folders you mark as important become **read-only** to the AI — it can look but cannot modify or delete them. Off by default; only protects what you tell it to.
-> 🍔 **舉例：** 把「公司財務資料夾」設成唯讀，之後 AI 再怎麼忙，也絕不會手滑改到那裡面的檔案。
-> Mark your "company finance folder" as read-only, and no matter how busy the AI gets, it can never slip and edit those files.
+
+把重要資料交給 AI 處理，心裡多少會有個疙瘩：「萬一它手滑，把我的重要檔案改壞或刪掉怎麼辦？」對非工程師來說，這種「不可逆的意外」特別可怕，因為你可能根本不知道怎麼救回來。
+
+這個功能就是那道保險：你指定某個資料夾為「保護區」，AI 之後**只能讀、不能改、不能刪、不能搬**裡面的東西。它讀資料、查資料完全沒問題，但只要偵測到「修改 / 刪除 / 覆蓋 / 搬移」的動作指向保護區，就會**當場攔下來**，並用白話告訴你為什麼被擋。你也可以在保護區裡留一個「暫存抽屜」，讓它有地方放東西。預設是「不鎖任何資料夾」，要你指定才生效，所以不會莫名其妙擋到你。
+
+**跟別的 repo 差在哪：** 工程師取向的包通常假設你會自己用 git、會自己備份、出事會自己救；它們很少內建「防呆護欄」。這個包假設你不會這些，所以把「防止不可逆的意外」直接做成內建功能。
+> 🍔 **舉例：** 把「公司財務」資料夾設成唯讀，之後 AI 再怎麼忙、再怎麼自動化，也絕對不會手滑改到那裡面任何一個檔案——你可以放心讓它幫你查、幫你整理，但動不了正本。
+
+*English:* Handing important files to an AI is nerve-wracking — what if it slips and ruins something irreversible? This lock lets you mark a folder as read-only: the AI can read freely but any modify/delete/move targeting it is blocked on the spot, with a plain explanation. You can leave one writable "drawer" inside. Off by default. Engineer-focused kits assume you can git/backup/recover yourself; this one builds the guardrail in.
 
 ### 4. 📊 白話狀態列 / Plain-language status bar
-畫面最下方那行，從術語換成人話：現在用哪個助理、在處理哪個資料夾、對話空間用了多少、用量即時數字。
-The bottom bar is rewritten from jargon into plain words: which assistant is active, which folder you're in, how much conversation space is used, and live usage numbers.
 
-### 5. 🌱 會自己長大 / Grows with you
-這是這個包的**靈魂功能**。AI 一邊跟你互動一邊留意你的習慣——你重複糾正的地方、每次都要的偏好——然後**主動問你**「要不要把它變成自動的」，你點頭它才設定。你也可以隨時打 `/習慣盤點` 叫它幫你盤點。
-The **soul** of this kit. As you work, the AI notices your habits — what you keep correcting, the preferences you always ask for — then **proactively asks** "want me to make this automatic?" It only sets it up if you say yes. You can also run `/習慣盤點` anytime to review.
-> 🍔 **舉例：** 你連兩次提醒它「報告要附日期」，它就會問：「要不要我以後自動幫你加上日期？」你說好，下次起就自動了。
-> After you remind it twice to "add the date to reports," it asks: *"Want me to add the date automatically from now on?"* — say yes, and it just happens.
+Claude Code 畫面最下方那一行（狀態列），預設塞滿術語：model 名稱、context %、token 數、cost……對工程師是儀表板，對新手是天書。你最想知道的其實很單純：「現在這個 AI 聰不聰明？」「我的額度還夠不夠？」「對話是不是快滿了？」
+
+這個功能把那行**整個翻成白話**，只留你真正在乎的資訊：🧠 現在用哪個助理大腦（Opus 最聰明／Sonnet 又快又好／Haiku 最快）、📁 正在處理哪個資料夾、💭 這次對話的記憶空間用了多少、🔄 距離「自動整理」還剩多少（這個數字會越用越少，逼近 0 時 AI 會自動把前面對話濃縮、騰出空間）、⏳📅 你訂閱方案的 5 小時與 7 天**即時用量數字**。每 10 秒自動更新，而且每一項都配一句白話形容（充裕／用得差不多了／快用完）。
+
+**跟別的 repo 差在哪：** 也有不少包提供漂亮的狀態列，但幾乎都是給工程師看的（進度條、git 分支、花費美金）。這個包是目前少數把它**徹底白話化**、還貼心加上「快用完會自動恢復」這種安心提示的。
+> 🍔 **舉例：** 你看到「📅 這7天用量：68%（用得差不多了）」，就知道這週還能用、但要省著點，不用去猜那些百分比到底代表什麼。
+
+*English:* The default status bar is a jargon dashboard (model, context %, tokens, cost). This rewrites it into plain words showing only what you care about: which brain is active, which folder, how much conversation memory is used, how far until auto-compaction (a number that counts down), and your live 5-hour / 7-day usage — refreshed every 10 seconds, each with a plain descriptor. Few kits make the bar this beginner-friendly.
+
+### 5. 🌱 會自己長大 / Grows with you　**← 靈魂功能 / the soul**
+
+這是這個包**最特別、別人沒有的東西**。一般的「記憶」只是把事情記下來；這個功能更進一步——它會**一邊陪你工作、一邊觀察你的習慣**，然後主動幫你把重複的事變成「自動的」。
+
+它留意四種訊號：你**重複糾正**同一件事、**每次都要求**同一種做法、**老是手動重做**同一個流程、甚至**定時／週期性**要做某件事。一旦發現規律，它就**主動用白話問你**：「我發現你常常⋯⋯要不要我幫你把它變成自動的？」你說「好」它才動手；你說「不用」它就記住、不再囉嗦。而且它會依情況挑最適合的形式：簡單規則做成 **hook**（每次自動執行）、常用動作做成**指令**（你喊一聲就能用）、定時的事做成 **loop／排程**、一長串多步驟流程做成**工作流（harness／workflow）**，甚至多個分身協作完成。
+
+換句話說，它把「記住你的偏好」升級成「**幫你設計自動化的運作機制**」——你用得越久，它就越貼合你、幫你省掉越多重複勞動。你也可以隨時打 `/習慣盤點`，叫它主動幫你盤點一次「有哪些事可以變自動」。
+
+**跟別的 repo 差在哪：** 其他設定包是「靜態」的——你下載什麼就是什麼，要進步得自己去改。這個包是**會成長的**：它把「持續觀察 + 主動提議自動化（你同意才做）」變成內建習慣。這個「自己長大」的迴圈，目前在面向新手的設定包裡幾乎看不到。
+> 🍔 **舉例：** 你連兩次提醒它「報告開頭要放日期」，它就會問：「要不要我以後自動幫你加上日期？」你說好，下次起就自動了；又或者它發現你每週一都在整理同一份資料，會問你「要不要設成每週一自動幫你跑？」
+
+*English:* The kit's **soul**, and what others lack. Plain memory just stores facts; this **watches how you work and turns repetition into automation**. It notices four signals — repeated corrections, always-requested preferences, manually-repeated workflows, and periodic tasks — then proactively asks whether to automate, only acting on a yes. It picks the right form: a **hook** (auto every time), a **command**, a **loop/schedule**, or a multi-step **workflow/harness**. So it upgrades "remembering preferences" into "designing automation for you," fitting you more the longer you use it. Run `/習慣盤點` to trigger a review. Other kits are static; this one grows.
 
 ### 6. 🔍 出廠檢查 / Factory check
-只要 AI 改了任何程式 / 設定，做完會**自動做一次輕量品管**：會不會出錯、安不安全，還有「**卡榫檢查**」——剛改的東西跟原本的其他部分**還接不接得上**。有問題先用白話跟你說，**要不要修先問你**。
-Whenever the AI changes any code/config, it runs a **lightweight quality check**: any bugs, any safety risks, plus a "**fit check**" — does the change still connect properly with everything else? It flags issues in plain language and **asks before fixing**.
+
+當你請 AI 幫你改一個設定、寫一段小程式、調整一個流程，你心裡其實沒底：「它改的對不對？會不會把別的地方弄壞？」非工程師沒辦法自己看程式碼檢查，只能祈禱它沒出錯——這正是最不安的地方。
+
+這個功能就是幫你「驗收」：只要 AI 改動了任何程式或設定，做完會**自動做一次輕量品管**，從三個角度看：**會不會出錯**（明顯的 bug、文法錯誤）、**安不安全**（有沒有風險、會不會誤刪），還有一個特別的**「卡榫檢查」**——就像組鋼彈模型要確認每個零件的卡榫都接得上，它會檢查「剛改的這個零件，跟原本會用到它的其他部分**還接不接得上**」，而不是只看單一檔案。重要或複雜的改動，它還會派 1～2 個獨立檢查員從不同角度交叉確認。檢查完用一兩句白話告訴你結果，**要不要修先問你**。你也可以隨時打 `/出廠檢查`。
+
+**跟別的 repo 差在哪：** 程式碼審查工具一大堆，但都是給工程師、用術語報告的。這個包把「改完自動檢查」變成**新手也能安心依賴的內建習慣**，而且報告全是白話。
+> 🍔 **舉例：** 它幫你改完一個自動化規則後說：「我檢查過了，規則本身沒問題，但有個地方建議加個保護，要不要我順手補上？」——你不用看任何程式碼，就知道安不安全。
+
+*English:* When the AI changes a setting or writes code, you can't tell if it's right or if it broke something else. This auto-runs a lightweight check after every change from three angles — correctness, safety, and a special **"fit check"** (like checking model-kit joints snap together): does the changed part still connect with everything that uses it, not just the file in isolation. Important changes get 1–2 independent reviewers. Results come in plain language, and it **asks before fixing**. Run `/出廠檢查` anytime. Unlike engineer-facing review tools, this is a beginner-safe built-in habit reported in plain words.
 
 <a id="preview"></a>
 
@@ -199,7 +238,7 @@ Full FAQ 👉 [docs/05-常見問題.md](docs/05-常見問題.md). Two most-asked
 全程白話、零基礎也看得懂（目前為繁體中文）。Plain-language guides for absolute beginners (Traditional Chinese).
 
 - [01・開始使用](docs/01-開始使用.md)
-- [02・六大功能怎麼運作](docs/02-五個小幫手.md)
+- [02・六大功能怎麼運作](docs/02-六大功能.md)
 - [03・白話狀態列](docs/03-白話狀態列.md)
 - [04・資料夾安全鎖](docs/04-資料夾安全鎖.md)
 - [05・常見問題](docs/05-常見問題.md)
