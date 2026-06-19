@@ -80,12 +80,12 @@ GitHub is full of Claude Code setup kits, but **almost all of them quietly assum
 
 新手用 Claude Code 最大的挫折，是**畫面一直跳出看不懂的東西**：一串指令、一塊程式碼、一堆英文縮寫，明明只是想請它幫個忙，卻好像在看工程師的工作日誌。久了就會「不敢按、不敢試」，因為根本不知道它在做什麼、會不會出事。
 
-這個功能把互動方式整個翻過來：**AI 每次動手之前，會先用一句白話告訴你「我正要做什麼」**，過程中也一律用生活化的比喻說明，複雜的步驟丟到背景去跑，前台只給你「結果」而不是「過程」。它靠的是一個每次都會自動觸發的提醒機制，不是靠 AI「臨時記得」要講人話——所以很穩定，不會今天客氣、明天又滿嘴術語。
+這個功能把互動方式整個翻過來：**AI 每次動手之前，會先用一句白話告訴你「我正要做什麼」**，過程中也一律用生活化的比喻說明，複雜的步驟丟到背景去跑，前台只給你「結果」而不是「過程」。它靠的是一個每次都會自動觸發的提醒機制，不是靠 AI「臨時記得」要講人話——所以很穩定，不會今天客氣、明天又滿嘴術語。它還會：**出錯時把紅字翻成白話「發生什麼事＋你接下來該怎麼辦」**、**先一句講重點、要細節你再問**（不一次倒一堆把你淹沒）、**用到你可能不懂的詞就當場解釋**。萬一還是聽不懂，隨時打 `/解釋給我聽`，它就換更簡單的比喻重講一次。
 
 **跟別的 repo 差在哪：** 市面上的設定包大多假設「你看得懂程式」，賣的是讓工程師更快；它們不在乎畫面對新手友不友善。這個包反過來，把「讓你看得懂、敢放心用」放在第一位。
 > 🍔 **舉例：** 你說「幫我把這 50 個檔案改名」，它不會貼一長串指令，而是說：「我正在背景幫你改名，改好會跟你說 ✅」。你看那句話就好，那些技術框框當背景雜訊忽略它即可。
 
-*English:* The biggest frustration for beginners is the constant stream of incomprehensible output. This kit flips it: the AI says one plain sentence before each action, uses everyday analogies, and runs heavy steps in the background — reporting results, not raw process. Unlike typical kits that assume you can read code, this one puts "you understand it and feel safe" first.
+*English:* The biggest frustration for beginners is the constant stream of incomprehensible output. This kit flips it: the AI says one plain sentence before each action, uses everyday analogies, and runs heavy steps in the background — reporting results, not raw process. It also **turns errors into plain "what happened + what to do next"**, **leads with the point and waits for you to ask for detail**, and **explains any term you might not know on the spot**. Still lost? Type `/解釋給我聽` for a simpler re-explanation. Unlike typical kits that assume you can read code, this one puts "you understand it and feel safe" first.
 
 ### 2. 🔔 語音提醒 / Voice reminders
 
@@ -113,12 +113,12 @@ GitHub is full of Claude Code setup kits, but **almost all of them quietly assum
 
 Claude Code 畫面最下方那一行（狀態列），預設塞滿術語：model 名稱、context %、token 數、cost……對工程師是儀表板，對新手是天書。你最想知道的其實很單純：「現在這個 AI 聰不聰明？」「我的額度還夠不夠？」「對話是不是快滿了？」
 
-這個功能把那行**整個翻成白話**，只留你真正在乎的資訊：🧠 現在用哪個助理大腦（Opus 最聰明／Sonnet 又快又好／Haiku 最快）、📁 正在處理哪個資料夾、💭 這次對話的記憶空間用了多少、🔄 距離「自動整理」還剩多少（這個數字會越用越少，逼近 0 時 AI 會自動把前面對話濃縮、騰出空間）、⏳📅 你訂閱方案的 5 小時與 7 天**即時用量數字**。每 10 秒自動更新，而且每一項都配一句白話形容（充裕／用得差不多了／快用完）。
+這個功能把那行**整個翻成白話**，而且**分成三行**（身份 / 對話 / 額度各一行，不會像以前擠成一長條被切掉看不到後面），只留你真正在乎的資訊：🧠 現在用哪個助理大腦（Opus 最聰明／Sonnet 又快又好／Haiku 最快）、📁 正在處理哪個資料夾、💭 這次對話的記憶空間用了多少、🔄 距離「自動整理」還剩多少（這個數字會越用越少，逼近 0 時 AI 會自動把前面對話濃縮、騰出空間）、⏳📅 你訂閱方案的 5 小時與 7 天**即時用量數字**。每 10 秒自動更新，而且每一項都配一句白話形容（充裕／用得差不多了／快用完）。
 
 **跟別的 repo 差在哪：** 也有不少包提供漂亮的狀態列，但幾乎都是給工程師看的（進度條、git 分支、花費美金）。這個包是目前少數把它**徹底白話化**、還貼心加上「快用完會自動恢復」這種安心提示的。
 > 🍔 **舉例：** 你看到「📅 這7天用量：68%（用得差不多了）」，就知道這週還能用、但要省著點，不用去猜那些百分比到底代表什麼。
 
-*English:* The default status bar is a jargon dashboard (model, context %, tokens, cost). This rewrites it into plain words showing only what you care about: which brain is active, which folder, how much conversation memory is used, how far until auto-compaction (a number that counts down), and your live 5-hour / 7-day usage — refreshed every 10 seconds, each with a plain descriptor. Few kits make the bar this beginner-friendly.
+*English:* The default status bar is a jargon dashboard (model, context %, tokens, cost). This rewrites it into plain words across **three lines** (identity / conversation / quota), showing only what you care about: which brain is active, which folder, how much conversation memory is used, how far until auto-compaction (a number that counts down), and your live 5-hour / 7-day usage — refreshed every 10 seconds, each with a plain descriptor. Three lines mean the end never gets cut off. Few kits make the bar this beginner-friendly.
 
 ### 5. 🌱 會自己長大 / Grows with you　**← 靈魂功能 / the soul**
 
@@ -128,10 +128,14 @@ Claude Code 畫面最下方那一行（狀態列），預設塞滿術語：model
 
 換句話說，它把「記住你的偏好」升級成「**幫你設計自動化的運作機制**」——你用得越久，它就越貼合你、幫你省掉越多重複勞動。你也可以隨時打 `/習慣盤點`，叫它主動幫你盤點一次「有哪些事可以變自動」。
 
+而且它「什麼時候開口」很有分寸（借鏡 MUSEON 的 **Hermes 自我鍛造機制**，聰明又不煩）：**①要重複夠多次、最近發生才提**（不是看到一次就打擾你）、**②提議做新的之前先看有沒有現成的可以調整**（能擴充就不另外造，避免越用越亂）、**③背後默默累積、你隨時能問**——問它「你最近觀察到我哪些習慣？」，它就把累積的觀察用白話攤開給你看（你清楚它在背後看什麼，才安心）。
+
 **跟別的 repo 差在哪：** 其他設定包是「靜態」的——你下載什麼就是什麼，要進步得自己去改。這個包是**會成長的**：它把「持續觀察 + 主動提議自動化（你同意才做）」變成內建習慣。這個「自己長大」的迴圈，目前在面向新手的設定包裡幾乎看不到。
 > 🍔 **舉例：** 你連兩次提醒它「報告開頭要放日期」，它就會問：「要不要我以後自動幫你加上日期？」你說好，下次起就自動了；又或者它發現你每週一都在整理同一份資料，會問你「要不要設成每週一自動幫你跑？」
 
 *English:* The kit's **soul**, and what others lack. Plain memory just stores facts; this **watches how you work and turns repetition into automation**. It notices four signals — repeated corrections, always-requested preferences, manually-repeated workflows, and periodic tasks — then proactively asks whether to automate, only acting on a yes. It picks the right form: a **hook** (auto every time), a **command**, a **loop/schedule**, or a multi-step **workflow/harness**. So it upgrades "remembering preferences" into "designing automation for you," fitting you more the longer you use it. Run `/習慣盤點` to trigger a review. Other kits are static; this one grows.
+
+Its sense of *when* to speak up is tuned, too (borrowed from MUSEON's **Hermes self-forging mechanism** — smart, not annoying): **(1) only after enough recent repetition** (not on the first occurrence), **(2) check for something existing to extend before building new** (so things don't get messy), and **(3) accumulate quietly, ask anytime** — ask "what habits have you noticed lately?" and it lays its observations out in plain language, so you always know what it's watching.
 
 ### 6. 🔍 出廠檢查 / Factory check
 
@@ -152,12 +156,13 @@ Claude Code 畫面最下方那一行（狀態列），預設塞滿術語：model
 After install, the **plain-language status bar** at the bottom looks like this (text preview):
 
 ```
-🧠 助理大腦：Opus（最聰明）  ·  📁 正在處理：我的專案  ·  💭 對話空間：用了 12%（充裕）
-  ·  🔄 距離自動整理：還剩 88%（很充裕）  ·  ⏳ 這5小時用量：41%（還很夠）  ·  📅 這7天用量：68%（用得差不多了）
+🧠 助理大腦：Opus（最聰明）   ·   📁 正在處理：我的專案
+💭 對話空間：用了 12%（充裕）   ·   🔄 距離自動整理：還剩 88%（很充裕）
+⏳ 這5小時用量：41%（還很夠）   ·   📅 這7天用量：68%（用得差不多了）
 ```
 
-每一段都是白話，不用懂術語也看得懂；用量是**即時數字**，每 10 秒更新。
-Every part is plain language — no jargon needed — and the usage figures are **live**, refreshed every 10 seconds.
+分成**三行**（身份 / 對話 / 額度），每一段都是白話、不用懂術語也看得懂；以前擠成一長行會被畫面切掉看不到後面，現在三行一目了然。用量是**即時數字**，每 10 秒更新。
+Split across **three lines** (identity / conversation / quota) so the end no longer gets cut off; every part is plain language — no jargon needed — and the usage figures are **live**, refreshed every 10 seconds.
 
 > 💬 歡迎大家裝完後幫忙補幾張真實截圖，一起讓新手更有畫面感（見 [一起讓它更好](#contributing)）。
 > Contributions of real screenshots are very welcome — see [Contributing](#contributing).
@@ -210,6 +215,7 @@ After install, you can use these **plain-language commands** (type `/` in the Cl
 | `/設定面板` | **逐條開關**每個功能，用講的就能操作（像 config 面板）。<br>Turn each feature on/off by talking (like a config panel). |
 | `/習慣盤點` | 找出可以幫你自動化的習慣，一項一項問你要不要做。<br>Find habits worth automating and ask you one by one. |
 | `/出廠檢查` | 對剛改的東西做一次輕量檢查（多面審查＋卡榫接合）。<br>Run a lightweight check on recent changes. |
+| `/解釋給我聽` | 聽不懂時喊它，用更簡單的比喻把剛剛的事重講一次。<br>When you're lost, re-explains the last thing with a simpler analogy. |
 
 想開關某個功能，最直覺的方式就是打 `/設定面板`，然後**用白話告訴它**，例如：
 The most intuitive way to toggle a feature is `/設定面板`, then **just say it in plain words**, e.g.:

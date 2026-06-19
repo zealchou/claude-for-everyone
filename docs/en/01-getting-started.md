@@ -29,7 +29,7 @@ Claude Code keeps all its settings in a folder called `.claude` on your computer
 
 - The main settings file (plain-language replies, voice, the safety lock, the status bar)
 - A "folder safety lock" script and a "plain-language status bar" script
-- Four plain-language commands (`/說明`, `/設定面板`, `/習慣盤點`, `/出廠檢查`)
+- Five plain-language commands (`/說明`, `/設定面板`, `/習慣盤點`, `/出廠檢查`, `/解釋給我聽`)
 - Plain-language memory plus the standing instructions for "Grows with you / Factory check"
 
 ## After installing
@@ -41,7 +41,7 @@ Claude Code keeps all its settings in a folder called `.claude` on your computer
 
 After restarting, try these three quick checks (any one responding means success):
 
-1. **Look at the bottom line of the screen** — do you see icons like 🧠 📁 💭? Yes → the status bar works.
+1. **Look at the bottom of the screen** — do you see three lines with icons like 🧠 📁 💭? Yes → the status bar works.
 2. **Type `/說明`** — does a list of features and commands pop up? Yes → commands work.
 3. **Ask it to do a small task** — when it's done, did you hear the computer speak? Yes → voice reminders work.
 
