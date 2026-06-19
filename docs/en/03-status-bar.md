@@ -2,14 +2,22 @@
 
 > 🌐 [中文](../03-白話狀態列.md) · **English**
 
-The "status bar" is the **bottom line** of the Claude Code screen. The default version is full of jargon (model, context %, tokens…) that beginners can't read. This kit rewrites it into plain language.
+The "status bar" is the **bottom rows** of the Claude Code screen. The default version is full of jargon (model, context %, tokens…) that beginners can't read. This kit rewrites it into plain language — and splits it across **three lines**, because cramming everything onto one line pushes the end off-screen where you can't see it.
 
-## What it looks like after the switch
+## What it looks like after the switch (three lines)
 
 ```
-🧠 Brain: Opus (smartest)  ·  📁 Working on: my-project  ·  💭 Conversation space: 12% used (plenty)
-  ·  🔄 Until auto-tidy: 88% left (plenty)  ·  ⏳ Last 5 hours: 41% used (still fine)  ·  📅 Last 7 days: 68% used (getting there)
+🧠 Brain: Opus (smartest)   ·   📁 Working on: my-project
+💭 Conversation space: 12% used (plenty)   ·   🔄 Until auto-tidy: 88% left (plenty)
+⏳ Last 5 hours: 41% used (still fine)   ·   📅 Last 7 days: 68% used (getting there)
 ```
+
+Each line covers one thing, readable at a glance:
+
+- **Line 1 · Identity**: which assistant brain is active, and which folder you're in.
+- **Line 2 · Conversation**: how much conversation memory is used, and how much room is left before auto-tidy.
+- **Line 3 · Quota**: how much of your 5-hour / 7-day quota is used (numbers only on Pro / Max;
+  on the free plan this line shows a gentle note instead, so it still stays three clean lines).
 
 What each part means:
 
